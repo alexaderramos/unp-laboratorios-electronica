@@ -1,0 +1,27 @@
+// Fonts
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+/********************************
+ default template
+*********************************/
+
+//perfect-scrollbar
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+
+//animate-css migrate v3 to v4
+@import "~animate.css/animate.compat.css";
+
+//materialize-css
+@import "../app-assets/css/themes/vertical-menu-nav-dark-template/materialize.min.css";
+
+//template styles
+@import "../app-assets/css/themes/vertical-menu-nav-dark-template/style.min.css";
+
+//page auth
+@import "../css/auth.css";
+
+//page errors
+@import "../css/errors.css";
+
+//custom css
+@import "../css/custom.css";
