@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all(['id','name']);
+        return view('users.index');
     }
 
     /**
