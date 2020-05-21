@@ -130,7 +130,7 @@ return [
          * `$user->can('view-posts')` would be 'name'.
          */
 
-        'model_key' => 'slug',
+        'model_key' => 'name',
 
         /*
          * You may optionally indicate a specific cache driver to use for permission and

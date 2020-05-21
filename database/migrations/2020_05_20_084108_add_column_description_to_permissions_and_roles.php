@@ -14,13 +14,13 @@ class AddColumnSlugToPermissionsAndRoles extends Migration
     public function up()
     {
         Schema::table('permissions', function (Blueprint $table) {
-            $table->string('slug')->unique();
-            $table->unique('name'); //unique constraint
+            $table->string('description')->unique()->after('name');
+            //$table->unique('name'); //unique constraint
         });
 
         Schema::table('roles', function (Blueprint $table) {
-            $table->string('slug')->unique();
-            $table->unique('name'); //unique constraint
+            $table->string('description')->unique()->after('name');
+            //$table->unique('name'); //unique constraint
         });
     }
 
@@ -32,13 +32,13 @@ class AddColumnSlugToPermissionsAndRoles extends Migration
     public function down()
     {
         Schema::table('permissions', function (Blueprint $table) {
-            $table->dropColumn('slug');
-            $table->dropUnique('permissions_name_unique');
+            $table->dropColumn('description');
+            //$table->dropUnique('permissions_name_unique');
         });
 
         Schema::table('roles', function (Blueprint $table) {
-            $table->dropColumn('slug');
-            $table->dropUnique('roles_name_unique');
+            $table->dropColumn('description');
+            //$table->dropUnique('roles_name_unique');
         });
     }
 }
