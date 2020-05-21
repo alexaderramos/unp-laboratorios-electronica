@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laboratorio') }}</title>
 
     <script src="{{asset('js/app.js')}}" defer></script>
 
@@ -19,7 +19,7 @@
 <!-- BEGIN: Header-->
 <header class="page-topbar" id="header">
     <div class="navbar navbar-fixed">
-        <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-purple-deep-orange gradient-shadow">
+        <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark navbar-custom-background gradient-shadow">
             <div class="nav-wrapper">
                 @include('layouts.components.nav-wrapper')
             </div>
@@ -29,9 +29,16 @@
 <!-- END: Header-->
 
 <!-- BEGIN: SideNav-->
-<aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light navbar-full sidenav-active-rounded">
+<aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light sidenav-active-square">
     <div class="brand-sidebar">
-        <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="index.html"><img class="hide-on-med-and-down" src="../../../app-assets/images/logo/materialize-logo-color.png" alt="materialize logo"/><img class="show-on-medium-and-down hide-on-med-and-up" src="../../../app-assets/images/logo/materialize-logo.png" alt="materialize logo"/><span class="logo-text hide-on-med-and-down">Materialize</span></a><a class="navbar-toggler" href="#"><i class="material-icons">radio_button_checked</i></a></h1>
+        <h1 class="logo-wrapper">
+            <a class="brand-logo " href="index.html">
+                <img class="hide-on-med-and-down logo-max" src="{{asset('images/logos-unp/logo-unp-100x100.png')}}" alt="materialize logo"/>
+                <img class="show-on-medium-and-down hide-on-med-and-up logo-min" src="{{asset('images/logos-unp/logo-unp-100x100.png')}}" alt="materialize logo"/>
+                <span class="logo-text hide-on-med-and-down">Laboratorios</span>
+            </a>
+            <a class="navbar-toggler" href="#"><i class="material-icons">radio_button_checked</i></a>
+        </h1>
     </div>
     <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
         @include('layouts.components.sidenav-items')
@@ -67,11 +74,11 @@
 <!-- END: Page Main-->
 
 <!-- BEGIN: Footer-->
-<footer class="page-footer footer footer-static footer-dark gradient-45deg-purple-deep-orange gradient-shadow navbar-border navbar-shadow">
+{{--<footer class="page-footer footer footer-static footer-dark gradient-45deg-purple-deep-orange gradient-shadow navbar-border navbar-shadow">
     <div class="footer-copyright">
         <div class="container"><span>&copy; {{\Carbon\Carbon::now()->year}} <a href="{{url('/')}}" target="_blank">PIXINVENT</a> All rights reserved.</span><span class="right hide-on-small-only">Design and Developed by <a href="https://github.com/alexaderramos">Alexander R.</a></span></div>
     </div>
-</footer>
+</footer>--}}
 
 </body>
 
