@@ -45,3 +45,67 @@ small.error-auth {
     transform: translateY(0);
     color: #ff4081;
 }
+
+/******************
+    NAVBAR
+ ***********************/
+
+.navbar .navbar-custom-background{
+    background: #17a2b8 !important;
+}
+
+.navbar .navbar-custom-background.gradient-shadow{
+    box-shadow: 3px 3px 20px 0 rgba(23, 162, 184,.5);
+}
+
+/*brand-logo*/
+
+
+.brand-sidebar .brand-logo {
+    font-size: 2.1rem;
+    line-height: 0;
+    position: absolute;
+    display: inline-block;
+    margin: 1px 0;
+    padding: 22px 12px 22px 18px;
+    color: #333 !important;
+}
+
+/*icono del logo*/
+.brand-sidebar .logo-wrapper a.brand-logo img.logo-max {
+    /*width: 100px;*/
+    margin-top: -2px;
+    height: 30px;
+}
+.brand-sidebar .logo-wrapper a.brand-logo img.logo-min {
+    height: 30px;
+    margin-top: -2px;
+}
+
+/*logo*/
+.brand-sidebar span.logo-text {
+    position: absolute;
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+/* navbar-item active*/
+.sidenav li a.active {
+    margin: 0;
+    color: #fff;
+    background: #17a2b8 ;/*linear-gradient(45deg,#8e24aa,#ff6e40);*/
+    box-shadow: none;
+}
+
+.sidenav li a.active:hover{
+    box-shadow: 3px 3px 20px 0 rgba(23, 162, 184,.5);
+}
+.sidenav .collapsible-header:hover, .sidenav.fixed .collapsible-header:hover {
+    background-color:#17a2b8;
+}
+
+/*notifications bagde*/
+.navbar .notification-badge {
+    background-color: #f44336;
+    box-shadow: 0 0 10px 0 #f44336;
+}
