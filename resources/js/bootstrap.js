@@ -5,25 +5,6 @@ try {
 
 } catch (e) {}
 
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
-
-/*************************
- *  TEMPLATE ASSETS
- *************************/
-
-require('materialize-css/dist/js/materialize');
-require('../app-assets/js/plugins.js');
-
-require('../js/custom/auth.js');
-/*************************
- *  END - TEMPLATE ASSETS
- *************************/
-
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

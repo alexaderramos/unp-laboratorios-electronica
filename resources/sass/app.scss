@@ -8,8 +8,11 @@
 //perfect-scrollbar
 @import "~perfect-scrollbar/css/perfect-scrollbar.css";
 
-//animate-css migrate v3 to v4
-@import "~animate.css/animate.compat.css";
+//animate-css migrate v3.5
+@import "~animate.css/animate.css";
+
+//animate of template
+//@import "../app-assets/vendors/animate-css/animate.css";
 
 //materialize-css
 @import "../app-assets/css/themes/vertical-menu-nav-dark-template/materialize.min.css";
@@ -24,4 +27,4 @@
 @import "../css/errors.css";
 
 //custom css
-@import "../css/custom.css";
+//@import "../css/custom.css";

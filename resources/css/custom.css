@@ -63,9 +63,6 @@ small.error-auth {
 
 .brand-sidebar .brand-logo {
     font-size: 2.1rem;
-    line-height: 0;
-    position: absolute;
-    display: inline-block;
     margin: 1px 0;
     padding: 22px 12px 22px 18px;
     color: #333 !important;
