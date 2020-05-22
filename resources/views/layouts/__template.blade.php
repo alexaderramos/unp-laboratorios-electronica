@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @yield('custom-meta')
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <title>{{ config('app.name', 'Laboratorio') }}</title>
 
@@ -20,7 +21,7 @@
 <header class="page-topbar" id="header">
     <div class="navbar navbar-fixed">
         <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark navbar-custom-background gradient-shadow">
-            <div class="nav-wrapper">
+        <div class="nav-wrapper">
                 @include('layouts.components.nav-wrapper')
             </div>
         </nav>
@@ -64,7 +65,7 @@
             </div>
         </div>
         <div class="col s12">
-            <div class="container animated fadeIn" id="app">
+            <div class="container" id="app">
                 @yield('content')
             </div>
             <div class="content-overlay"></div>
