@@ -34,14 +34,14 @@
 </li>
 
 <li class="{{Route::is('roles.*') || Route::is('permissions.*')?'active':''}} bold">
-    <a class="collapsible-header waves-effect waves-cyan {{Route::is('roles.*') || Route::is('permissions.*')?'active':''}} " href="JavaScript:void(0)">
+    <a class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)">
         <i class="material-icons">security</i>
         <span class="menu-title">Seguridad</span>
     </a>
     <div class="collapsible-body">
         <ul class="collapsible collapsible-sub" data-collapsible="accordion">
 
-            <li class=""><a class="" href="{{route('roles.index')}}">
+            <li class="active"><a class="active" href="{{route('roles.index')}}">
                     <i class="material-icons">radio_button_{{!Route::is('roles.index')?'un':''}}checked</i>
                     <span>Roles</span></a>
             </li>

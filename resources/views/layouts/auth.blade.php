@@ -15,16 +15,16 @@
 </head>
 <!-- END: Head-->
 <body class="vertical-layout page-header-light vertical-menu-collapsible vertical-menu-nav-dark preload-transitions 1-column {{Route::is('register')?'register-bg':''}}   blank-page blank-page" data-open="click" data-menu="vertical-menu-nav-dark" data-col="1-column">
-<div class="row">
-    <div class="col s12">
-        <div class="container">
-           @yield('content')
+<div id="app">
+    <div class="row">
+        <div class="col s12">
+            <div class="container">
+                @yield('content')
+            </div>
+            <div class="content-overlay"></div>
         </div>
-        <div class="content-overlay"></div>
     </div>
 </div>
-
-
 </body>
 </html>
 {{--

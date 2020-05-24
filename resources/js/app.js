@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('role-index-component', require('./components/Roles/RoleIndexComponent').default);
+Vue.component('role-row-table-component',require('./components/Roles/RoleRowTableComponent').default);
 Vue.component('role-update-component', require('./components/Roles/RoleUpdateComponent').default);
 
 /**
@@ -27,6 +28,13 @@ Vue.component('role-update-component', require('./components/Roles/RoleUpdateCom
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+/*Vue.directive('uppercase', {
+    update (el) {
+        el.value = el.value.toUpperCase()
+    },
+})*/
+
 
 const app = new Vue({
     el: '#app',

@@ -33,7 +33,7 @@
 
 
     <!-- BEGIN: SideNav-->
-    <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light navbar-full  sidenav-active-rounded">
+    <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light navbar-full  sidenav-active-square">
         <div class="brand-sidebar">
             <h1 class="logo-wrapper">
                 <a class="brand-logo darken-1" href="index.html">
