@@ -17,5 +17,7 @@ class RoleSeeder extends Seeder
         Role::create(['name'=>'maestros','description'=>'MAESTROS']);
         Role::create(['name'=>'secretaría','description'=>'SECRETARÍA']);
 
+        factory(Role::class,40)->create();
+
     }
 }
