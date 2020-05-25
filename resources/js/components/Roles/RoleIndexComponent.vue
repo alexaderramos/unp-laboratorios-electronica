@@ -1,22 +1,21 @@
 <template>
 <div>
     <div class="row">
-        <div class="col s12 m12 l12">
-            <div id="bordered-table" class="card card card-default">
-                <div class="card-content">
+        <div class="col s12" >
+            <div class="card ">
+                <div class="card-content" >
                     <h4 class="card-title">Roles del Sistema</h4>
                     <div class="row">
-                        <div class="col s12">
-                        </div>
-                        <div class="col s12">
-                            <table class="highlight centered">
+                        <div class="col s12 table-scrollable" v-show="roles.length > 0">
+                            <table
+                                   class="highlight  animated fadeIn">
                                 <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Descripción</th>
                                     <th>Identificador</th>
-                                    <th>Editar</th>
-                                    <th>Eliminar</th>
+                                    <th class="option-btn">Editar</th>
+                                    <th class="option-btn">Eliminar</th>
                                 </tr>
                                 </thead>
 
@@ -49,7 +48,7 @@
 </template>
 
 <script>
-    export default {
+       export default {
         name: "RoleIndexComponent",
         data(){
             return{
@@ -75,7 +74,7 @@
                 let url = '/api/roles/'+role.id
                 swal({
                     title: "Estas seguro?",
-                    text: "Este proceso afectar a los usuarios que esten registrados con este rol!",
+                    text: "Este proceso afectará a los usuarios que esten registrados con este rol!",
                     icon: 'warning',
                     buttons: {
                         cancel: 'Cancelar',

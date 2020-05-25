@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @yield('custom-meta')
+@yield('custom-meta')
     <title>{{ config('app.name', 'Laboratorio') }}</title>
     <script src="{{asset('js/app.js')}}" defer></script>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -79,7 +79,7 @@
             </div>
             <div class="col s12">
                 <div class="container">
-                    <div class="section">
+                    <div class="section ">
                     @yield('content')
                     </div>
                 </div>
