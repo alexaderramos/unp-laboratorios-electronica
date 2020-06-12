@@ -45370,10 +45370,10 @@ var render = function() {
                     [_c("i", { staticClass: "fal fa-pencil-alt" })]
                   )
                 : _c(
-                    "a",
+                    "button",
                     {
                       staticClass:
-                        "waves-effect waves-light btn-flat  tooltipped",
+                        "waves-effect waves-light btn-flat  green darken-1 tooltipped",
                       attrs: {
                         "data-position": "left",
                         "data-tooltip": "Guardar"

@@ -23,7 +23,7 @@
                <div class="card-content">
                    <div class="float-right">
                        <button  v-if="!isEditing" @click="isEditing = true" class="waves-effect waves-light btn-floating yellow darken-3 tooltipped" data-position="left" data-tooltip="Modificar"><i class="fal fa-pencil-alt"></i></button>
-                       <a  v-else @click="isEditing = false" class="waves-effect waves-light btn-flat  tooltipped" data-position="left" data-tooltip="Guardar"><i class="material-icons">save</i></a>
+                       <button  v-else @click="isEditing = false" class="waves-effect waves-light btn-flat  green darken-1 tooltipped" data-position="left" data-tooltip="Guardar"><i class="material-icons">save</i></button>
 
                    </div>
                    <h4 class="card-title mb-0">Permisos </h4>
