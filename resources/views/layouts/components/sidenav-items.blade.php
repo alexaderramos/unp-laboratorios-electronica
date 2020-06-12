@@ -41,12 +41,12 @@
     <div class="collapsible-body">
         <ul class="collapsible collapsible-sub" data-collapsible="accordion">
 
-            <li class="active"><a class="active" href="{{route('roles.index')}}">
-                    <i class="material-icons">radio_button_{{!Route::is('roles.index')?'un':''}}checked</i>
+            <li ><a class="{{Route::is('roles.*')?'active':''}}" href="{{route('roles.index')}}">
+                    <i class="material-icons">radio_button_{{!Route::is('roles.*')?'un':''}}checked</i>
                     <span>Roles</span></a>
             </li>
-            <li class=""><a class="" href="{{route('permissions.index')}}">
-                    <i class="material-icons">radio_button_{{!Route::is('permissions.index')?'un':''}}checked</i>
+            <li ><a class="{{Route::is('permissions.*')?'active':''}}" href="{{route('permissions.index')}}">
+                    <i class="material-icons">radio_button_{{!Route::is('permissions.*')?'un':''}}checked</i>
                     <span >Permisos</span></a>
             </li>
 

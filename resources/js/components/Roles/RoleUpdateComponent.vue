@@ -21,8 +21,28 @@
        <div class="col s12 m12 l12">
            <div class="card">
                <div class="card-content">
-                   <h4 class="card-title">Permisos</h4>
-                   <button class="btn red animated fadeIn">Hola</button>
+                   <h4 class="card-title mb-0">Permisos <i class="material-icons float-right">more_vert</i></h4>
+                   <div class="row">
+                       <div class="col s12 table-scrollable">
+                           <table class="highlight  animated fadeIn">
+                               <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Descripcion</th>
+                                </tr>
+                               </thead>
+                               <tbody>
+                                <tr v-for="permission in permissionsToEdit" :key="permission.id">
+                                    <td>{{permission.id}}</td>
+                                    <td>{{permission.description}}</td>
+                                </tr> <tr v-for="permission in permissionsToEdit" :key="permission.id">
+                                    <td>{{permission.id}}</td>
+                                    <td>{{permission.description}}</td>
+                                </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
                </div>
            </div>
        </div>
@@ -40,8 +60,7 @@
                             <input type="text" name="role-description" id="role-description"
                                    v-model="rolePivot.description"
                                    @input="rolePivot.description = $event.target.value.toUpperCase()"
-                                   @keyup=""
-                                   placeholder="Descripcion">
+                                   placeholder="Descripcion" value="tet">
                             <label for="role-description">Descripcion</label>
                         </div>
                         <div class="input-field col s12 m6" >
@@ -67,29 +86,33 @@
         name: "RoleUpdateComponent",
         data(){
             return{
-                role_name:'',
                 role:{
                     id:'',
                     name:'',
-                    description:''
+                    description:'',
+                    permissions:[],
                 },
+                permissionsToEdit:[],
                 rolePivot:{
                     name:'',
                     description:''
                 },
-                errors:[]
+                errors:[],
+                isEditing:false
             }
         },
         created() {
-            this.role_name = $('meta[name=role-name]').attr('content');
             this.getRoleToEdit()
         },
         methods:{
             getRoleToEdit(){
-                let url= '/api/roles/'+this.role_name
+                let role_id = $('meta[name=role-id]').attr('content');
+                let url= '/api/roles/'+role_id
                 axios.get(url)
                     .then(response => {
                         this.role = response.data;
+                        //obtenemos una copia del los permisos
+                        this.permissionsToEdit = Array.from(this.role.permissions);
                     })
                     .catch(error=>{
                         this.errors =  error.response.data;
@@ -98,7 +121,6 @@
             openModalForEditRole(){
                 this.rolePivot.name = this.role.name;
                 this.rolePivot.description = this.role.description;
-                $('.modal').modal();
                 $('#modal1').modal('open');
             },
             updateRole(){

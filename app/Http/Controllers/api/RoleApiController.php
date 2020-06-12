@@ -36,13 +36,19 @@ class RoleApiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Role  $role
+     * @param Request $request
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($name)
+    public function show(Request $request,$id)
     {
-        $role = Role::select(['id','name','description'])->where('name',$name)->firstOrFail();
-        $role->permissions;
+
+        $role = Role::with('permissions:id,name,description')
+            ->where('id',$id)
+            ->select('roles.id','roles.name','roles.description')
+            ->firstOrFail();
+        /*$role = Role::select(['id','name','description'])->where('id',$id)->firstOrFail();
+        $role->permissions=$role->permissions()->get(['name','id','description']);*/
         return response()->json($role);
     }
 

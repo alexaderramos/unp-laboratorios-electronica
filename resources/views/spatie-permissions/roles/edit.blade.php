@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('custom-meta')
-    <meta name="role-name" content="{{ $role->name }}">
+    <meta name="role-id" content="{{ $role->id }}">
 @endsection
 
 @section('breadcrumb')

@@ -46,13 +46,9 @@ const app = new Vue({
 
 require('materialize-css/dist/js/materialize');
 require('../app-assets/js/plugins.js');
-
-require('../app-assets/vendors/data-tables/js/jquery.dataTables.min');
-require('../app-assets/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min');
+require('../js/custom/init-jquery-components')
 
 require('../js/custom/auth.js');
 /*************************
  *  END - TEMPLATE ASSETS
  *************************/
-
-
