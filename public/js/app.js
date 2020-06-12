@@ -45550,8 +45550,8 @@ var render = function() {
             {
               name: "show",
               rawName: "v-show",
-              value: _vm.permissions.length > 0,
-              expression: "permissions.length > 0"
+              value: _vm.permissions.length > 0 && _vm.isEditing,
+              expression: "permissions.length > 0 && isEditing"
             }
           ],
           staticClass: "col m6 l6"

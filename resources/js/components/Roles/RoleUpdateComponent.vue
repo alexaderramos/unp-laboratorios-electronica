@@ -50,7 +50,7 @@
                </div>
            </div>
        </div>
-        <div v-show="permissions.length > 0"  class="col m6 l6" >
+        <div v-show="permissions.length > 0 && isEditing"  class="col m6 l6" >
             <div class="card">
                 <div class="card-content">
                     <div class="float-right">
