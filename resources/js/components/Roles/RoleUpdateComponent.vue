@@ -17,8 +17,8 @@
            </div>
        </div>
    </div>
-    <div class="row"  style="height: calc( 80vh )">
-       <div class="col s6" :class="isEditing?'m6 l6':''">
+    <div class="row">
+       <div class="col s12" :class="isEditing?'m6 l6':''">
            <div class="card">
                <div class="card-content">
                    <div class="float-right">
@@ -50,12 +50,11 @@
                </div>
            </div>
        </div>
-        <div v-if=""  class="col m6 l6" >
+        <div v-show="permissions.length > 0"  class="col m6 l6" >
             <div class="card">
                 <div class="card-content">
                     <div class="float-right">
-                        <button  v-if="!isEditing" @click="isEditing = true" class="waves-effect waves-light btn-floating yellow darken-3 tooltipped" data-position="left" data-tooltip="Modificar"><i class="fal fa-pencil-alt"></i></button>
-                        <button  v-else @click="isEditing = false" class="waves-effect waves-light btn-floating  green darken-1 tooltipped" data-position="left" data-tooltip="Guardar"><i class="material-icons">save</i></button>
+                        <button @click="isEditing = false" class="waves-effect waves-light btn-floating  red darken-1 tooltipped" data-position="left" data-tooltip="Cancelar"><i class="material-icons">clear</i></button>
 
                     </div>
                     <h4 class="card-title mb-0 ">Permisos Asignables  </h4>

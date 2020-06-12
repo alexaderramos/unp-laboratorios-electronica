@@ -2186,7 +2186,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RoleUpdateComponent",
   data: function data() {
@@ -45456,10 +45455,10 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row", staticStyle: { height: "calc( 80vh )" } }, [
+    _c("div", { staticClass: "row" }, [
       _c(
         "div",
-        { staticClass: "col s6", class: _vm.isEditing ? "m6 l6" : "" },
+        { staticClass: "col s12", class: _vm.isEditing ? "m6 l6" : "" },
         [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-content" }, [
@@ -45544,138 +45543,134 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "col m6 l6" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-content" }, [
-            _c("div", { staticClass: "float-right" }, [
-              !_vm.isEditing
-                ? _c(
-                    "button",
-                    {
-                      staticClass:
-                        "waves-effect waves-light btn-floating yellow darken-3 tooltipped",
-                      attrs: {
-                        "data-position": "left",
-                        "data-tooltip": "Modificar"
-                      },
-                      on: {
-                        click: function($event) {
-                          _vm.isEditing = true
-                        }
-                      }
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.permissions.length > 0,
+              expression: "permissions.length > 0"
+            }
+          ],
+          staticClass: "col m6 l6"
+        },
+        [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-content" }, [
+              _c("div", { staticClass: "float-right" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "waves-effect waves-light btn-floating  red darken-1 tooltipped",
+                    attrs: {
+                      "data-position": "left",
+                      "data-tooltip": "Cancelar"
                     },
-                    [_c("i", { staticClass: "fal fa-pencil-alt" })]
-                  )
-                : _c(
-                    "button",
-                    {
-                      staticClass:
-                        "waves-effect waves-light btn-floating  green darken-1 tooltipped",
-                      attrs: {
-                        "data-position": "left",
-                        "data-tooltip": "Guardar"
-                      },
-                      on: {
-                        click: function($event) {
-                          _vm.isEditing = false
-                        }
+                    on: {
+                      click: function($event) {
+                        _vm.isEditing = false
                       }
-                    },
-                    [
-                      _c("i", { staticClass: "material-icons" }, [
-                        _vm._v("save")
-                      ])
-                    ]
-                  )
-            ]),
-            _vm._v(" "),
-            _c("h4", { staticClass: "card-title mb-0 " }, [
-              _vm._v("Permisos Asignables  ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col s12 table-scrollable" }, [
-                _c("table", { staticClass: "highlight  animated fadeIn" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.permissions, function(permission, index) {
-                      return _c("tr", { key: permission.id }, [
-                        _c("td", [_vm._v(_vm._s(permission.id))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(permission.description))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("label", [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: permission.checked,
-                                  expression: "permission.checked"
-                                }
-                              ],
-                              attrs: {
-                                name: permission.id,
-                                id: permission.id,
-                                type: "checkbox"
-                              },
-                              domProps: {
-                                checked: permission.checked,
-                                checked: Array.isArray(permission.checked)
-                                  ? _vm._i(permission.checked, null) > -1
-                                  : permission.checked
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.changeChecked(permission, index)
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("clear")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("h4", { staticClass: "card-title mb-0 " }, [
+                _vm._v("Permisos Asignables  ")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col s12 table-scrollable" }, [
+                  _c("table", { staticClass: "highlight  animated fadeIn" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.permissions, function(permission, index) {
+                        return _c("tr", { key: permission.id }, [
+                          _c("td", [_vm._v(_vm._s(permission.id))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(permission.description))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("label", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: permission.checked,
+                                    expression: "permission.checked"
+                                  }
+                                ],
+                                attrs: {
+                                  name: permission.id,
+                                  id: permission.id,
+                                  type: "checkbox"
                                 },
-                                change: function($event) {
-                                  var $$a = permission.checked,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          permission,
-                                          "checked",
-                                          $$a.concat([$$v])
-                                        )
+                                domProps: {
+                                  checked: permission.checked,
+                                  checked: Array.isArray(permission.checked)
+                                    ? _vm._i(permission.checked, null) > -1
+                                    : permission.checked
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.changeChecked(permission, index)
+                                  },
+                                  change: function($event) {
+                                    var $$a = permission.checked,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = null,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            permission,
+                                            "checked",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            permission,
+                                            "checked",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
                                     } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          permission,
-                                          "checked",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
+                                      _vm.$set(permission, "checked", $$c)
                                     }
-                                  } else {
-                                    _vm.$set(permission, "checked", $$c)
                                   }
                                 }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("span")
+                              }),
+                              _vm._v(" "),
+                              _c("span")
+                            ])
                           ])
                         ])
-                      ])
-                    }),
-                    0
-                  )
+                      }),
+                      0
+                    )
+                  ])
                 ])
               ])
             ])
           ])
-        ])
-      ])
+        ]
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
