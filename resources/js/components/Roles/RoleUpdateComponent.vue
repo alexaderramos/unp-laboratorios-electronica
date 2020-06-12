@@ -4,8 +4,8 @@
        <div class="col s12 m12 l12">
            <div class="card ">
                <div class="card-content">
-                   <div class="">
-                       <button class="float-right waves-effect btn-floating yellow darken-3 tooltipped" data-position="left" data-tooltip="Modificar" @click="openModalForEditRole" >
+                   <div class="float-right">
+                       <button class=" waves-effect btn-floating yellow darken-3 tooltipped" data-position="left" data-tooltip="Modificar" @click="openModalForEditRole" >
                            <i class="fal fa-pencil-alt"></i>
                        </button>
                    </div>
@@ -21,7 +21,12 @@
        <div class="col s12 m12 l12">
            <div class="card">
                <div class="card-content">
-                   <h4 class="card-title mb-0">Permisos <i class="material-icons float-right">more_vert</i></h4>
+                   <div class="float-right">
+                       <button  v-if="!isEditing" @click="isEditing = true" class="waves-effect waves-light btn-floating yellow darken-3 tooltipped" data-position="left" data-tooltip="Modificar"><i class="fal fa-pencil-alt"></i></button>
+                       <a  v-else @click="isEditing = false" class="waves-effect waves-light btn-flat  tooltipped" data-position="left" data-tooltip="Guardar"><i class="material-icons">save</i></a>
+
+                   </div>
+                   <h4 class="card-title mb-0">Permisos </h4>
                    <div class="row">
                        <div class="col s12 table-scrollable">
                            <table class="highlight  animated fadeIn">
@@ -33,9 +38,6 @@
                                </thead>
                                <tbody>
                                 <tr v-for="permission in permissionsToEdit" :key="permission.id">
-                                    <td>{{permission.id}}</td>
-                                    <td>{{permission.description}}</td>
-                                </tr> <tr v-for="permission in permissionsToEdit" :key="permission.id">
                                     <td>{{permission.id}}</td>
                                     <td>{{permission.description}}</td>
                                 </tr>

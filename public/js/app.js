@@ -2140,6 +2140,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RoleUpdateComponent",
   data: function data() {
@@ -45312,12 +45314,12 @@ var render = function() {
       _c("div", { staticClass: "col s12 m12 l12" }, [
         _c("div", { staticClass: "card " }, [
           _c("div", { staticClass: "card-content" }, [
-            _c("div", {}, [
+            _c("div", { staticClass: "float-right" }, [
               _c(
                 "button",
                 {
                   staticClass:
-                    "float-right waves-effect btn-floating yellow darken-3 tooltipped",
+                    " waves-effect btn-floating yellow darken-3 tooltipped",
                   attrs: {
                     "data-position": "left",
                     "data-tooltip": "Modificar"
@@ -45348,33 +45350,65 @@ var render = function() {
       _c("div", { staticClass: "col s12 m12 l12" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-content" }, [
-            _vm._m(0),
+            _c("div", { staticClass: "float-right" }, [
+              !_vm.isEditing
+                ? _c(
+                    "button",
+                    {
+                      staticClass:
+                        "waves-effect waves-light btn-floating yellow darken-3 tooltipped",
+                      attrs: {
+                        "data-position": "left",
+                        "data-tooltip": "Modificar"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.isEditing = true
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fal fa-pencil-alt" })]
+                  )
+                : _c(
+                    "a",
+                    {
+                      staticClass:
+                        "waves-effect waves-light btn-flat  tooltipped",
+                      attrs: {
+                        "data-position": "left",
+                        "data-tooltip": "Guardar"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.isEditing = false
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("save")
+                      ])
+                    ]
+                  )
+            ]),
+            _vm._v(" "),
+            _c("h4", { staticClass: "card-title mb-0" }, [_vm._v("Permisos ")]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col s12 table-scrollable" }, [
                 _c("table", { staticClass: "highlight  animated fadeIn" }, [
-                  _vm._m(1),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    [
-                      _vm._l(_vm.permissionsToEdit, function(permission) {
-                        return _c("tr", { key: permission.id }, [
-                          _c("td", [_vm._v(_vm._s(permission.id))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(permission.description))])
-                        ])
-                      }),
-                      _vm._v(" "),
-                      _vm._l(_vm.permissionsToEdit, function(permission) {
-                        return _c("tr", { key: permission.id }, [
-                          _c("td", [_vm._v(_vm._s(permission.id))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(permission.description))])
-                        ])
-                      })
-                    ],
-                    2
+                    _vm._l(_vm.permissionsToEdit, function(permission) {
+                      return _c("tr", { key: permission.id }, [
+                        _c("td", [_vm._v(_vm._s(permission.id))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(permission.description))])
+                      ])
+                    }),
+                    0
                   )
                 ])
               ])
@@ -45468,7 +45502,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "modal-footer" }, [
-            _vm._m(2),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "a",
@@ -45496,17 +45530,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h4", { staticClass: "card-title mb-0" }, [
-      _vm._v("Permisos "),
-      _c("i", { staticClass: "material-icons float-right" }, [
-        _vm._v("more_vert")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

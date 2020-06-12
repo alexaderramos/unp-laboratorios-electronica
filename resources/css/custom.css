@@ -1,4 +1,6 @@
-/*error auth*/
+/*******************
+error auth
+*************************/
 div.alert-error-auth{
   margin-left: 3rem;
 }
@@ -77,9 +79,9 @@ small.error-auth {
 }
 */
 
-/**
+/*********************
 Table scrollable
- */
+ *************************/
 
 .table-scrollable {
     height: calc(80vh - 100px);
@@ -95,4 +97,11 @@ Table scrollable
 }
 .table-scrollable thead {
     color: rgba(0, 0, 0, 0.85);
+}
+
+/**
+    card options title
+ */
+.card .card-content .card-title i.material-icons {
+    cursor: pointer;
 }
