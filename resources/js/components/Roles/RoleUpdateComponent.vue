@@ -17,13 +17,13 @@
            </div>
        </div>
    </div>
-    <div class="row ">
-       <div class="col s12 m12 l12">
+    <div class="row"  style="height: calc( 80vh )">
+       <div class="col s6" :class="isEditing?'m6 l6':''">
            <div class="card">
                <div class="card-content">
                    <div class="float-right">
-                       <button  v-if="!isEditing" @click="isEditing = true" class="waves-effect waves-light btn-floating yellow darken-3 tooltipped" data-position="left" data-tooltip="Modificar"><i class="fal fa-pencil-alt"></i></button>
-                       <button  v-else @click="isEditing = false" class="waves-effect waves-light btn-flat  green darken-1 tooltipped" data-position="left" data-tooltip="Guardar"><i class="material-icons">save</i></button>
+                       <button  v-if="!isEditing" @click.prevent="changeIsEditing()" class="waves-effect waves-light btn-floating yellow darken-3 tooltipped" data-position="left" data-tooltip="Modificar"><i class="fal fa-pencil-alt"></i></button>
+                       <button  v-else @click="isEditing= false" class="waves-effect waves-light btn-floating  green darken-1 tooltipped" data-position="left" data-tooltip="Guardar"><i class="material-icons">save</i></button>
 
                    </div>
                    <h4 class="card-title mb-0">Permisos </h4>
@@ -34,12 +34,14 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Descripcion</th>
+                                    <th v-if="isEditing">Quitar</th>
                                 </tr>
                                </thead>
                                <tbody>
                                 <tr v-for="permission in permissionsToEdit" :key="permission.id">
                                     <td>{{permission.id}}</td>
                                     <td>{{permission.description}}</td>
+                                    <td v-if="isEditing" ><a class="mb-0 mt-0 btn-flat" ><i class="material-icons pink-text">clear</i></a></td>
                                 </tr>
                                </tbody>
                            </table>
@@ -48,6 +50,49 @@
                </div>
            </div>
        </div>
+        <div v-if=""  class="col m6 l6" >
+            <div class="card">
+                <div class="card-content">
+                    <div class="float-right">
+                        <button  v-if="!isEditing" @click="isEditing = true" class="waves-effect waves-light btn-floating yellow darken-3 tooltipped" data-position="left" data-tooltip="Modificar"><i class="fal fa-pencil-alt"></i></button>
+                        <button  v-else @click="isEditing = false" class="waves-effect waves-light btn-floating  green darken-1 tooltipped" data-position="left" data-tooltip="Guardar"><i class="material-icons">save</i></button>
+
+                    </div>
+                    <h4 class="card-title mb-0 ">Permisos Asignables  </h4>
+                    <div class="row">
+                        <div class="col s12 table-scrollable">
+                            <table class="highlight  animated fadeIn">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Descripcion</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(permission, index) in permissions" :key="permission.id">
+                                        <td>{{permission.id}}</td>
+                                        <td>{{permission.description}}</td>
+                                        <td>
+                                            <label>
+                                                <input
+                                                    v-model="permission.checked"
+                                                    @click="changeChecked(permission, index)"
+                                                    :name="permission.id"
+                                                    :id="permission.id"
+                                                    :checked="permission.checked"
+                                                    type="checkbox"/>
+                                                <span></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -94,7 +139,8 @@
                     description:'',
                     permissions:[],
                 },
-                permissionsToEdit:[],
+                permissionsToEdit:[], //permissions para editar
+                permissions:[], //permisos para asigar
                 rolePivot:{
                     name:'',
                     description:''
@@ -141,6 +187,50 @@
                     .catch(error =>{
                         console.log(error.response.data);
                     })
+            },
+            changeIsEditing(){
+                if (this.permissions.length === 0){
+                    this.getPermissions();
+                }
+                this.isEditing = true
+            },
+            getPermissions(){
+                axios.get('/api/permissions')
+                    .then(response => {
+                        let permissions = response.data;
+                        this.permissions = this.checkedPermissionsPrev(permissions)
+                    })
+            },
+            checkedPermissionsPrev(permissions){
+                permissions.map(p =>{
+                    let test = this.permissionsToEdit.find(rp => {
+                        return p.id === rp.id;
+                    });
+                    p.checked = test !== undefined;
+                })
+                return permissions;
+            },
+            changeChecked(permission, index){
+                //buscamos si se encuentra en los permisos para editar
+                let indexP = this.permissionsToEdit.findIndex(p =>permission.id === p.id)
+                if (indexP >= 0){
+                    this.permissionsToEdit.splice(indexP,1); //lo removemos
+                    //verificamos si el eliminado esta el la original
+                    let indexOrg = this.role.permissions.findIndex(op => op.id === permission.id )
+                    permission.class = indexOrg === -1 ? '':'red-text';
+                }else{
+                    // this.role.permissions.push(permission) //
+                    let indexPrev = this.permissionsToEdit.findIndex(p => p.id > permission.id )
+                    let indexOrg = this.role.permissions.findIndex(op => op.id === permission.id ) //buscar si esta en la original
+                    console.log(indexOrg);
+                    permission.class = indexOrg === -1 ? 'cyan-text':'';  //class for css
+                    if(indexPrev >= 0){
+                        this.permissionsToEdit.splice(indexPrev,0,permission); //agregar al inicio o al medio
+                    }else{
+                        this.permissionsToEdit.push(permission) //add to end
+                    }
+
+                }
             }
         }
     }

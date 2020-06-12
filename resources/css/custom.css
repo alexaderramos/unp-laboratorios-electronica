@@ -85,6 +85,7 @@ Table scrollable
 
 .table-scrollable {
     height: calc(80vh - 100px);
+    /*height: 400px;*/
     overflow: auto;
 }
 .table-scrollable thead tr th {

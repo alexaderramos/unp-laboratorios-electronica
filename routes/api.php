@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('roles','api\RoleApiController');
+Route::apiResource('permissions','api\PermissionApiController');

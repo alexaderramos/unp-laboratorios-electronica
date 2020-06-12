@@ -2142,6 +2142,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RoleUpdateComponent",
   data: function data() {
@@ -2153,6 +2198,9 @@ __webpack_require__.r(__webpack_exports__);
         permissions: []
       },
       permissionsToEdit: [],
+      //permissions para editar
+      permissions: [],
+      //permisos para asigar
       rolePivot: {
         name: '',
         description: ''
@@ -2199,6 +2247,68 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error.response.data);
       });
+    },
+    changeIsEditing: function changeIsEditing() {
+      if (this.permissions.length === 0) {
+        this.getPermissions();
+      }
+
+      this.isEditing = true;
+    },
+    getPermissions: function getPermissions() {
+      var _this3 = this;
+
+      axios.get('/api/permissions').then(function (response) {
+        var permissions = response.data;
+        _this3.permissions = _this3.checkedPermissionsPrev(permissions);
+      });
+    },
+    checkedPermissionsPrev: function checkedPermissionsPrev(permissions) {
+      var _this4 = this;
+
+      permissions.map(function (p) {
+        var test = _this4.permissionsToEdit.find(function (rp) {
+          return p.id === rp.id;
+        });
+
+        p.checked = test !== undefined;
+      });
+      return permissions;
+    },
+    changeChecked: function changeChecked(permission, index) {
+      //buscamos si se encuentra en los permisos para editar
+      var indexP = this.permissionsToEdit.findIndex(function (p) {
+        return permission.id === p.id;
+      });
+
+      if (indexP >= 0) {
+        this.permissionsToEdit.splice(indexP, 1); //lo removemos
+        //verificamos si el eliminado esta el la original
+
+        var indexOrg = this.role.permissions.findIndex(function (op) {
+          return op.id === permission.id;
+        });
+        permission["class"] = indexOrg === -1 ? '' : 'red-text';
+      } else {
+        // this.role.permissions.push(permission) //
+        var indexPrev = this.permissionsToEdit.findIndex(function (p) {
+          return p.id > permission.id;
+        });
+
+        var _indexOrg = this.role.permissions.findIndex(function (op) {
+          return op.id === permission.id;
+        }); //buscar si esta en la original
+
+
+        console.log(_indexOrg);
+        permission["class"] = _indexOrg === -1 ? 'cyan-text' : ''; //class for css
+
+        if (indexPrev >= 0) {
+          this.permissionsToEdit.splice(indexPrev, 0, permission); //agregar al inicio o al medio
+        } else {
+          this.permissionsToEdit.push(permission); //add to end
+        }
+      }
     }
   }
 });
@@ -45346,8 +45456,95 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row " }, [
-      _c("div", { staticClass: "col s12 m12 l12" }, [
+    _c("div", { staticClass: "row", staticStyle: { height: "calc( 80vh )" } }, [
+      _c(
+        "div",
+        { staticClass: "col s6", class: _vm.isEditing ? "m6 l6" : "" },
+        [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-content" }, [
+              _c("div", { staticClass: "float-right" }, [
+                !_vm.isEditing
+                  ? _c(
+                      "button",
+                      {
+                        staticClass:
+                          "waves-effect waves-light btn-floating yellow darken-3 tooltipped",
+                        attrs: {
+                          "data-position": "left",
+                          "data-tooltip": "Modificar"
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.changeIsEditing()
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fal fa-pencil-alt" })]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass:
+                          "waves-effect waves-light btn-floating  green darken-1 tooltipped",
+                        attrs: {
+                          "data-position": "left",
+                          "data-tooltip": "Guardar"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.isEditing = false
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "material-icons" }, [
+                          _vm._v("save")
+                        ])
+                      ]
+                    )
+              ]),
+              _vm._v(" "),
+              _c("h4", { staticClass: "card-title mb-0" }, [
+                _vm._v("Permisos ")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col s12 table-scrollable" }, [
+                  _c("table", { staticClass: "highlight  animated fadeIn" }, [
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", [_vm._v("#")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Descripcion")]),
+                        _vm._v(" "),
+                        _vm.isEditing ? _c("th", [_vm._v("Quitar")]) : _vm._e()
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.permissionsToEdit, function(permission) {
+                        return _c("tr", { key: permission.id }, [
+                          _c("td", [_vm._v(_vm._s(permission.id))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(permission.description))]),
+                          _vm._v(" "),
+                          _vm.isEditing ? _c("td", [_vm._m(0, true)]) : _vm._e()
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col m6 l6" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-content" }, [
             _c("div", { staticClass: "float-right" }, [
@@ -45373,7 +45570,7 @@ var render = function() {
                     "button",
                     {
                       staticClass:
-                        "waves-effect waves-light btn-flat  green darken-1 tooltipped",
+                        "waves-effect waves-light btn-floating  green darken-1 tooltipped",
                       attrs: {
                         "data-position": "left",
                         "data-tooltip": "Guardar"
@@ -45392,20 +45589,83 @@ var render = function() {
                   )
             ]),
             _vm._v(" "),
-            _c("h4", { staticClass: "card-title mb-0" }, [_vm._v("Permisos ")]),
+            _c("h4", { staticClass: "card-title mb-0 " }, [
+              _vm._v("Permisos Asignables  ")
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col s12 table-scrollable" }, [
                 _c("table", { staticClass: "highlight  animated fadeIn" }, [
-                  _vm._m(0),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.permissionsToEdit, function(permission) {
+                    _vm._l(_vm.permissions, function(permission, index) {
                       return _c("tr", { key: permission.id }, [
                         _c("td", [_vm._v(_vm._s(permission.id))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(permission.description))])
+                        _c("td", [_vm._v(_vm._s(permission.description))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("label", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: permission.checked,
+                                  expression: "permission.checked"
+                                }
+                              ],
+                              attrs: {
+                                name: permission.id,
+                                id: permission.id,
+                                type: "checkbox"
+                              },
+                              domProps: {
+                                checked: permission.checked,
+                                checked: Array.isArray(permission.checked)
+                                  ? _vm._i(permission.checked, null) > -1
+                                  : permission.checked
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.changeChecked(permission, index)
+                                },
+                                change: function($event) {
+                                  var $$a = permission.checked,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          permission,
+                                          "checked",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          permission,
+                                          "checked",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(permission, "checked", $$c)
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("span")
+                          ])
+                        ])
                       ])
                     }),
                     0
@@ -45502,7 +45762,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "modal-footer" }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "a",
@@ -45534,11 +45794,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "mb-0 mt-0 btn-flat" }, [
+      _c("i", { staticClass: "material-icons pink-text" }, [_vm._v("clear")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("#")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Descripcion")])
+        _c("th", [_vm._v("Descripcion")]),
+        _vm._v(" "),
+        _c("th")
       ])
     ])
   },
